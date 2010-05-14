@@ -4,6 +4,7 @@ local game = require 'dokidoki.game'
 player = game.make_blueprint('player',
   {'transform', pos=v2(100, 100), scale_x=24, scale_y=32},
   {'sprite'},
+  {'collider'},
   {'player_movement'})
 
 plant = game.make_blueprint('plant',

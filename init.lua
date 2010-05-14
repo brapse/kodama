@@ -5,7 +5,7 @@ local game = require 'dokidoki.game'
 local v2 = require 'dokidoki.v2'
 
 kernel.start_main_loop(game.make_game(
-  {'update_setup', 'update', 'collision_check', 'update_cleanup'},
+  {'update_setup', 'update', 'update_correction', 'update_cleanup'},
   {'draw_setup', 'draw', 'draw_debug'},
   function (game)
     game.init_component('exit_handler')
