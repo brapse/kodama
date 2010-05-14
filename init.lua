@@ -16,6 +16,7 @@ kernel.start_main_loop(game.make_game(
     game.init_component('blueprints')
     game.init_component('resources')
 
+    game.init_component('camera')
     game.init_component('planet')
 
     game.actors.new(game.blueprints.player)
