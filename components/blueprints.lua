@@ -9,5 +9,6 @@ player = game.make_blueprint('player',
 
 plant = game.make_blueprint('plant',
   {'transform', scale_x=8, scale_y=8},
-  {'sprite'})
+  {'sprite'},
+  {'collider'})
 
