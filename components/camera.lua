@@ -11,6 +11,11 @@ local angle = 0
 local center = v2.zero
 local zoom
 
+-- wrap the angle between [-math.pi, math.pi)
+local function normalize_angle(a)
+  return (a + math.pi) % (2*math.pi) - math.pi
+end
+
 -- sets the zoomed-in camera target. nil to disable.
 function set_target(t)
   assert(t == nil or (t and t.transform))
@@ -42,7 +47,7 @@ game.actors.new_generic('camera_component', function()
     local delta = target_angle - angle
     if delta > math.pi then delta = delta - 2*math.pi end
     if delta <= -math.pi then delta = delta + 2*math.pi end
-    angle = angle + delta/10
+    angle = normalize_angle(angle + delta/10)
 
     -- center change
     center = center + (target_center - center) / 10
