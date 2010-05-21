@@ -1,6 +1,9 @@
 local gl = require 'gl'
 local v2 = require 'dokidoki.v2'
 
+-- height off the ground to center the camera in zoomed in mode
+local eye_level = 32
+
 local zoomed_in = false
 local target = nil
 
@@ -26,8 +29,9 @@ game.actors.new_generic('camera_component', function()
 
     if zoomed_in and target then
       target_angle = -v2.angle(target.transform.facing)
-      target_center = target.transform.pos + v2.norm(target.transform.pos) * 32
-      target_zoom = 96
+      target_center = target.transform.pos
+                      + v2.norm(target.transform.pos) * eye_level
+      target_zoom = eye_level * 3
     else
       target_angle = 0
       target_center = v2.zero
