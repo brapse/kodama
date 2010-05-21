@@ -5,7 +5,7 @@ local right_key = string.byte('D')
 local up_key    = string.byte('W')
 local plant_key = string.byte(' ')
 
-local speed = 2
+local speed = 0.25
 
 function update()
   local right = self.transform.facing
