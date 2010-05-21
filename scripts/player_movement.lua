@@ -1,8 +1,9 @@
 local v2 = require 'dokidoki.v2'
+local glfw = require 'glfw'
 
-local left_key  = string.byte('A')
-local right_key = string.byte('D')
-local up_key    = string.byte('W')
+local left_key  = glfw.KEY_LEFT
+local right_key = glfw.KEY_RIGHT
+local up_key    = glfw.KEY_UP
 local plant_key = string.byte(' ')
 
 local speed = 0.25
