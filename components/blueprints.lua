@@ -9,6 +9,7 @@ player = game.make_blueprint('player',
 plant = game.make_blueprint('plant',
   {'transform'},
   {'sprite', image=game.resources.plant_sprite},
+  {'planet_growth', value = 5},
   {'collider'})
 
 star = game.make_blueprint('star',
