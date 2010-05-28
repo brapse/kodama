@@ -7,6 +7,7 @@ local up_key    = glfw.KEY_UP
 local plant_key = string.byte(' ')
 
 local speed = 0.15
+local jump_speed = 5
 
 function update()
   local right = self.transform.facing
@@ -20,9 +21,9 @@ function update()
     self.collider.apply_impulse(right * speed)
   end
 
-  if game.keyboard.key_pressed(up_key) then
+  if self.collider.is_grounded and game.keyboard.key_pressed(up_key) then
     -- Jump
-    self.collider.apply_impulse(up)
+    self.collider.apply_impulse(up * jump_speed)
   end
 
   if game.keyboard.key_pressed(plant_key) then

@@ -4,6 +4,8 @@ velocity = v2.zero
 gravity  = -0.4
 local decay = 0.99
 
+is_grounded = false
+
 function update()
   -- apply gravity
   apply_impulse(gravity * v2.norm(self.transform.pos))
@@ -24,8 +26,15 @@ function update_correction()
 
     -- keep player from being inside the planet
     if is_inside then
-      velocity = velocity - v2.project(velocity, up)
+      is_grounded = true
+      -- if their vertical velocity is downwards then eliminate it
+      if v2.dot(velocity, up) < 0 then
+        velocity = velocity - v2.project(velocity, up)
+      end
+      -- pull the player out of the planet
       self.transform.pos = up * game.planet.radius
+    else
+      is_grounded = false
     end
   end
 
