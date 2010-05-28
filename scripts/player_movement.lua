@@ -6,7 +6,7 @@ local right_key = glfw.KEY_RIGHT
 local up_key    = glfw.KEY_UP
 local plant_key = string.byte(' ')
 
-local speed = 0.25
+local speed = 0.15
 
 function update()
   local right = self.transform.facing
