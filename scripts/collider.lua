@@ -3,7 +3,7 @@ local v2 = require 'dokidoki.v2'
 velocity = v2.zero
 gravity  = -0.4
 friction = 0.1
-local decay = 0.97
+local decay = 0.99
 
 is_grounded = false
 
@@ -41,7 +41,7 @@ function update_correction()
       local vertical_velocity   = v2.dot(velocity, up)
       local horizontal_velocity = v2.dot(velocity, right)
 
-      horizontal_velocity = apply_friction(horizontal_velocity, friction)
+      horizontal_velocity = apply_friction(horizontal_velocity, friction) * 0.9
 
       -- if their vertical velocity is downwards then eliminate it
       if vertical_velocity < 0 then
