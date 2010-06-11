@@ -6,8 +6,32 @@ radius = 50
 local SEGMENTS = 64
 
 game.actors.new_generic('planet_component', function()
+
+local layers = {}
+
+layers[0] = {
+    pos = v2(0,0),
+    scale = 1,
+    image = game.resources.gradient
+    }
+    
+    
   function draw()
+  
+      local s = layers[0]
+      local pos = s.pos
+      local scale = s.scale
+      
+      gl.glPushMatrix()
+      gl.glTranslated(pos.x, pos.y, 0)
+      gl.glScaled(0.008*radius*scale,0.008*radius*scale,0.008*radius*scale)
+      s.image:draw()
+      gl.glPopMatrix()
+    
+
     gl.glBegin(gl.GL_POLYGON)
+    
+       
     for i = 1, SEGMENTS do
       local point = v2.unit(i/SEGMENTS * 2*math.pi) * radius
       gl.glVertex2d(point.x, point.y)
@@ -24,13 +48,7 @@ game.actors.new_generic('planet_component', function()
     game.planet.radius = game.planet.radius * 0.8 + target_radius * 0.2
   end
   
-   
-local atmo = game.actors.new(game.blueprints.atmosphere)
-atmo.sprite.color = {1,1,1,0.5} 
-atmo.transform.scale_x = 0.4
-atmo.transform.scale_y= 0.4
-
-  
+ 
   
   
 end)
