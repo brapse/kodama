@@ -13,6 +13,16 @@ local zoom
 
 scale = 1
 
+function toggle_zoom()
+  if zoomed_in then
+    zoomed_in  = false;
+  else
+    zoomed_in = true
+  end
+end    
+
+
+
 -- wrap the angle between [-math.pi, math.pi)
 local function normalize_angle(a)
   return (a + math.pi) % (2*math.pi) - math.pi
@@ -24,14 +34,11 @@ function set_target(t)
   target = t
 end
 
-function set_zoomed_in(z)
-  zoomed_in = z
-end
+
 
 game.actors.new_generic('camera_component', function()
   function update()
-    set_zoomed_in(game.keyboard.key_held(string.byte('Z')))
-
+    
     local target_angle, target_center, target_zoom
 
     if zoomed_in and target then

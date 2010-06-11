@@ -15,10 +15,3 @@ plant = game.make_blueprint('plant',
 star_field = game.make_blueprint('star_field',
   {'transform'},
   {'star_field'})
-  
-atmosphere = game.make_blueprint('atmosphere',
-  {'transform', scale_x = 0.4, scale_y = 0.4},
-  {'layered_sprite',
-    layer=-1,
-    color={1,1,1,0.5},
-    image=game.resources.gradient})

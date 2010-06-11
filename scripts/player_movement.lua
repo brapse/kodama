@@ -5,9 +5,12 @@ local left_key  = glfw.KEY_LEFT
 local right_key = glfw.KEY_RIGHT
 local up_key    = glfw.KEY_UP
 local plant_key = string.byte(' ')
+local camera_key = string.byte('Z')
 
 local speed = 0.40
 local jump_speed = 5
+
+    
 
 function update()
   local right = self.transform.facing
@@ -31,4 +34,14 @@ function update()
     game.actors.new(game.blueprints.plant,
       {'transform', pos = self.transform.pos})
   end
+  
+  
+  if game.keyboard.key_pressed(camera_key) then
+     game.camera.toggle_zoom()
+    
+  end
+  
+  
+  
+  
 end
