@@ -6,15 +6,14 @@ radius = 50
 local SEGMENTS = 64
 
 game.actors.new_generic('planet_component', function()
-  function draw()
+  game.sprite_manager.register_sprite(self, 0, function()
     gl.glBegin(gl.GL_POLYGON)
     for i = 1, SEGMENTS do
       local point = v2.unit(i/SEGMENTS * 2*math.pi) * radius
       gl.glVertex2d(point.x, point.y)
     end
     gl.glEnd();
-  end
-  
+  end)
   
   function update()
     local target_radius = 50
@@ -23,14 +22,7 @@ game.actors.new_generic('planet_component', function()
     end
     game.planet.radius = game.planet.radius * 0.8 + target_radius * 0.2
   end
-  
-   
-local atmo = game.actors.new(game.blueprints.atmosphere)
-atmo.sprite.color = {1,1,1,0.5} 
-atmo.transform.scale_x = 0.4
-atmo.transform.scale_y= 0.4
-
-  
-  
-  
 end)
+
+local atmo = game.actors.new(game.blueprints.atmosphere)
+  

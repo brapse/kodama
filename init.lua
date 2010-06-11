@@ -16,6 +16,8 @@ kernel.start_main_loop(game.make_game(
     game.init_component('resources')
     game.init_component('blueprints')
 
+    game.init_component('sprite_manager')
+
     game.init_component('camera')
     local background = game.actors.new(game.blueprints.star_field)
     game.init_component('planet')

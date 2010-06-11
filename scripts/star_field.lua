@@ -14,7 +14,7 @@ for i=1, 200 do
   -- - randomize image
 end
 
-function draw()
+game.sprite_manager.register_sprite(self, -2, function()
   gl.glPushMatrix()
   local camera_scale = 1/game.camera.scale
   gl.glScaled(camera_scale, camera_scale, camera_scale)
@@ -32,4 +32,4 @@ function draw()
   end
 
   gl.glPopMatrix()
-end
+end)
