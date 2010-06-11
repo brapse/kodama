@@ -4,16 +4,18 @@ velocity = v2.zero
 gravity  = -0.4
 friction = 0.1
 local decay = 0.99
+local impulse_accumulator = v2.zero
 
 is_grounded = false
 
 function update()
   -- apply gravity
   apply_impulse(gravity * v2.norm(self.transform.pos))
-  -- decay velocity
-  velocity = velocity * decay
-  self.transform.pos = self.transform.pos + velocity
 
+  local old_velocity = velocity
+  velocity = (velocity + impulse_accumulator) * decay
+  impulse_accumulator = v2.zero
+  self.transform.pos = self.transform.pos + (old_velocity + velocity) / 2
 end
 
 local function apply_friction(velocity, friction)
@@ -59,5 +61,5 @@ function update_correction()
 end
 
 function apply_impulse(impulse)
-  velocity = velocity + impulse
+  impulse_accumulator = impulse_accumulator + impulse
 end
