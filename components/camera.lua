@@ -11,6 +11,8 @@ local angle = 0
 local center = v2.zero
 local zoom
 
+scale = 1
+
 -- wrap the angle between [-math.pi, math.pi)
 local function normalize_angle(a)
   return (a + math.pi) % (2*math.pi) - math.pi
@@ -63,7 +65,8 @@ game.actors.new_generic('camera_component', function()
   function draw_setup()
     gl.glTranslated(game.opengl_2d.width/2, game.opengl_2d.height/2, 0)
     gl.glRotated(angle/math.pi*180, 0, 0, 1)
-    local scale = game.opengl_2d.height / zoom
+    game.camera.scale = game.opengl_2d.height / zoom
+    local scale = game.camera.scale
     gl.glScaled(scale, scale, scale)
     gl.glTranslated(-center.x, -center.y, 0)
 

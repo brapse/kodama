@@ -12,11 +12,6 @@ plant = game.make_blueprint('plant',
   {'planet_growth', value = 5},
   {'collider'})
 
-star = game.make_blueprint('star',
-  {'transform'},
-  {'sprite', image=game.resources.star_sprite})
-  
-  
 star_field = game.make_blueprint('star_field',
   {'transform'},
   {'star_field'})

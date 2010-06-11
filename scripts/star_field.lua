@@ -1,15 +1,37 @@
 local gl = require 'gl'
 local v2 = require 'dokidoki.v2'
 
+local sprites = {}
+
 for i=1, 200 do
-  local star = game.actors.new(game.blueprints.star)
-  star.transform.pos = v2(math.random(-300,300),math.random(-200,200))
-  star.transform.scale_x = math.random()*0.15
-  star.transform.scale_y= star.transform.scale_x
-  star.sprite.color = {1,1,1,star.transform.scale_x*3} 
-  
-  angle = math.rad( (math.random(0,360)) )
-  star.transform.facing = v2.unit(angle)
+  sprites[i] = {
+    pos = v2.random()*300,
+    scale = math.random() * 0.1 + 0.05,
+    image = game.resources.star_sprite
+  }
+  -- todo:
+  -- - randomize color
+  -- - randomize image
+end
+
+function draw()
+  gl.glPushMatrix()
+  local camera_scale = 1/game.camera.scale
+  gl.glScaled(camera_scale, camera_scale, camera_scale)
+
+  for i = 1, #sprites do
+    local s = sprites[i]
+    local pos = s.pos
+    local scale = s.scale
+
+    gl.glPushMatrix()
+    gl.glTranslated(pos.x, pos.y, 0)
+    gl.glScaled(scale, scale, scale)
+    s.image:draw()
+    gl.glPopMatrix()
+  end
+
+  gl.glPopMatrix()
 end
 
 local atmo = game.actors.new(game.blueprints.atmosphere)
