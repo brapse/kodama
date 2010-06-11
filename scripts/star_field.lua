@@ -11,8 +11,3 @@ for i=1, 200 do
   angle = math.rad( (math.random(0,360)) )
   star.transform.facing = v2.unit(angle)
 end
-
-local atmo = game.actors.new(game.blueprints.atmosphere)
-atmo.sprite.color = {1,1,1,0.5} 
-atmo.transform.scale_x = 0.4
-atmo.transform.scale_y= 0.4

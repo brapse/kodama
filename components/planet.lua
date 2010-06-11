@@ -14,7 +14,8 @@ game.actors.new_generic('planet_component', function()
     end
     gl.glEnd();
   end
-
+  
+  
   function update()
     local target_radius = 50
     for _, growth in ipairs(game.actors.get('planet_growth')) do
@@ -22,4 +23,14 @@ game.actors.new_generic('planet_component', function()
     end
     game.planet.radius = game.planet.radius * 0.8 + target_radius * 0.2
   end
+  
+   
+local atmo = game.actors.new(game.blueprints.atmosphere)
+atmo.sprite.color = {1,1,1,0.5} 
+atmo.transform.scale_x = 0.4
+atmo.transform.scale_y= 0.4
+
+  
+  
+  
 end)
