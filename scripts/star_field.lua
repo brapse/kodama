@@ -5,7 +5,7 @@ local sprites = {}
 
 for i=1, 200 do
   sprites[i] = {
-    pos = v2.random()*300,
+    pos = v2.random()*1000,
     scale = math.random() * 0.1 + 0.05,
     image = game.resources.star_sprite
   }
@@ -16,7 +16,7 @@ end
 
 game.sprite_manager.register_sprite(self, -2, function()
   gl.glPushMatrix()
-  local camera_scale = 1/game.camera.scale
+  local camera_scale = (1/game.camera.scale * 0.6 + 0.4) 
   gl.glScaled(camera_scale, camera_scale, camera_scale)
 
   for i = 1, #sprites do
